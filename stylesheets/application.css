@@ -1,0 +1,32 @@
+#display {
+    position: static;
+    width: 100%;
+    text-align: center;
+    color: black;
+    font-size: 24px;
+    font-weight: bold;
+    font-family: Tahoma verdana Comic Sans MS;
+    /*font-family: Comic Sans MS;
+    text-shadow: 0.1em 0.1em 0.15em #333;*/
+}
+
+#dictionary {
+    position: static;
+    width: 100%;
+    color: black;
+}
+
+#video-player {
+    width: 100%;
+}
+
+#container {
+    display:block;
+    width: 720px;
+}
+
+.clickable:hover {
+    border-radius: 7px;
+    background-color: rgba(255, 255, 0, 0.9);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}

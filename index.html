@@ -1,107 +1,57 @@
-<!DOCTYPE html>
-<html>
-
 <head>
-    <title>The translator</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <style type="text/css">
-        #display {
-            position: static;
-            display: block;
-            text-align: center;
-            color: black;
-            font-size: 24px;
-            font-family: Comic Sans MS;
-            font-weight: bold;
-            text-shadow: 0.1em 0.1em 0.15em #333;
-        }
-
-        #dictionary {
-            position: static;
-            display: block;
-            color: black;
-        }
-    </style>
-    <script type="text/javascript">    
-        var video;
-        document.addEventListener("DOMContentLoaded", function () {  // don't run this until all DOM content is loaded 
-            //  get objects associated with the video, track, and div elements  
-            video = document.getElementById("video1");
-            var disp = document.getElementById("display");
-            var dict = document.getElementById("dictionary");
-            var track = document.getElementById("entrack");       
-
-            video.addEventListener("loadedmetadata", function () {
-                document.getElementById("player").style.width = video.videoWidth + "px";  // make enclosure div width == video width
-                disp.style.top = (video.style.top + (video.videoHeight * .05)) + "px"; // set the text to appear at 5% from the top of the video
-                disp.style.left = video.style.left;  // set the text to appear relative to the left edge of the video
-                disp.style.width = video.videoWidth + "px"; // set text box to the width of the video
-            }, false);
-
-            track.addEventListener("cuechange", function () {
-                var myTrack = this.track;             // track element is "this" 
-                var myCues = myTrack.activeCues;      // activeCues is an array of current cues.                                                    
-                if (myCues.length > 0) {
-                    disp.innerText = myCues[0].text;
-                    disp.innerHTML = disp.innerHTML.replace(/\b(\w+?)\b(?![^<]*>)/g, '<span class="clickable">$1</span>');
-                    $('.clickable').click(function(e) { 
-                        var word = e.target.innerText.toLowerCase()
-                        $.ajax({
-                        //The URL to process the request
-                            url: 'https://glosbe.com/gapi/translate?',
-                            type: 'GET',
-                            async: true,
-                            dataType: 'jsonp',   //you may use jsonp for cross origin request
-                            data: {
-                                from: 'eng',
-                                dest: 'eng',
-                                format: 'json',
-                                phrase: word,
-                                pretty: 'true'
-                            },
-                            'crossDomain' : true,
-                            // 'success': function(data) {
-                            //     dict.innerHTML = JSON.stringify(data.tuc[0].meanings);
-                            // },
-                            'success': function(data) {
-                                $('#dictionary').empty();
-                                $('#dictionary').append("<h2 id='word'>" + word + "</h2>");
-                                $('#dictionary').append("<ol id='definitionList'></ol>");
-                                var def = data.tuc[0].meanings;
-                                var i = 0;
-                                for (; i < def.length; i++) {
-                                    $("#definitionList").append("<li>" + def[i].text + "</li>");
-                                }
-                            }
-                        });
-                    });
-                } else {
-                    disp.innerHTML = "";
-                    dict.innerHTML = "";
-                }
-            }, false);
-        }, false);     
-    </script>
+    <link rel="stylesheet" type="text/css" href="http://vjs.zencdn.net/5.11.7/video-js.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/vjs-default.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/application.css">
+	<!-- If you'd like to support IE8 -->
+	<script src="http://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <title>The translator</title>
 </head>
 
 <body>
-    <h1>The translator</h1>
-    <div id="player" style="width:640px;">
-        <!-- container div that is sized by script -->
-        <video id="video1" controls style="width:100%;">
-            <source src="video/sintel-short.mp4" type="video/mp4">
-            <source src="video/sintel-short.webm" type="video/webm">
-            <!-- by using "metadata" as the kind, it will suppress the video player's own caption display -->
-            <track id="entrack" label="English" kind="metadata" srclang="en" src="subtitles/vtt/sintel-en.vtt" default>
-            <track id="detrack" label="Deutsch" kind="metadata" srclang="de" src="subtitles/vtt/sintel-de.vtt">
-            <track id="estrack" label="Espanol" kind="metadata" srclang="es" src="subtitles/vtt/sintel-es.vtt">
-        </video>
+    <div id="container">
+        <h1>The translator</h1>
+        <div id="video-player" >
+            <!-- container div that is sized by script -->
+            <video id="video1" class="video-js" controls preload="auto" style="width=100%;" data-setup='{"playbackRates": [0.25, 0.5, 1, 1.5, 1.75, 2] }'>
+                <source src="videos/sintel-short.mp4" type="video/mp4">
+                <source src="videos/sintel-short.webm" type="video/webm">
+                <!-- by using "metadata" as the kind, it will suppress the video player's own caption display -->
+                <track id="entrack" label="English" kind="captions" srclang="en" src="subtitles/vtt/sintel-en.vtt" default>
+                <track id="detrack" label="Deutsch" kind="captions" srclang="de" src="subtitles/vtt/sintel-de.vtt">
+                <track id="estrack" label="Espanol" kind="captions" srclang="es" src="subtitles/vtt/sintel-es.vtt">
+                <p class="vjs-no-js">
+                    To view this video please enable JavaScript, and consider upgrading to a web browser that
+                    <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+                </p>
+            </video>
+        </div>
         <div id="display">
         </div>
         <div id="dictionary">
         </div>
     </div>
-</body>
 
-</html>
+	<script src="http://vjs.zencdn.net/5.11.7/video.js"></script>
+    <script src="javascripts/subtitles.js"></script>
+	<script>
+        $(function(){
+            let $refreshButton = $('#refresh');
+            let $results = $('#css_result');
+
+            function refresh(){
+                let css = $('style.cp-pen-styles').text();
+                $results.html(css);
+            }
+
+            refresh();
+            $refreshButton.click(refresh);
+            
+            // Select all the contents when clicked
+            $results.click(function(){
+                $(this).select();
+            });
+        });
+    </script>
+</body>
