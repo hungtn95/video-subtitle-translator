@@ -1,3 +1,8 @@
+#left-container {
+    width: 640px;
+    float:left;
+}
+
 #display {
     position: static;
     width: 100%;
@@ -20,9 +25,16 @@
     width: 100%;
 }
 
-#container {
-    display:block;
-    width: 720px;
+#right-container {
+    margin: 0 0 0 660px;
+    background: #f5f5f5;
+    width: 400px;
+}
+
+#transcript {
+  width: 100%;
+  margin: auto;
+  font-family: Arial, sans-serif;
 }
 
 .clickable:hover {
