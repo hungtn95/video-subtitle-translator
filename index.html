@@ -1,45 +1,46 @@
 <head>
-	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-	<link rel="stylesheet" type="text/css" href="http://vjs.zencdn.net/5.11.7/video-js.css">
-	<link rel="stylesheet" type="text/css" href="stylesheets/index.css">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet" type="text/css" href="http://vjs.zencdn.net/5.11.7/video-js.css">
+  <link rel="stylesheet" type="text/css" href="stylesheets/index.css">
   <link rel="stylesheet" type="text/css" href="stylesheets/videojs-transcript.css">
-	<link rel="stylesheet" type="text/css" href="stylesheets/custom-videojs-player.css">
-	<!-- If you'd like to support IE8 -->
-	<script src="http://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="stylesheets/custom-videojs-player.css">
+  <!-- If you'd like to support IE8 -->
+  <script src="http://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="http://vjs.zencdn.net/5.11.7/video.js"></script>
-	<script src="javascripts/videojs-transcript.js"></script>
-	<title>The translator</title>
+  <script src="javascripts/videojs-transcript.js"></script>
+  <title>The translator</title>
 </head>
+
 <body>
   <h1>The translator</h1>
-	<div id="left-container">
-		<div id="video-player">
-			<!-- container div that is sized by script -->
-			<video id="video1" class="video-js vjs-default-skin" controls preload="auto" width="640" height="264" data-setup='{"playbackRates": [0.5, 1, 1.5, 2]}'>
-				<source src="videos/sintel-short.mp4" type="video/mp4">
-				<source src="videos/sintel-short.webm" type="video/webm">
-				<!-- by using "metadata" as the kind, it will suppress the video player's own caption display -->
-				<track id="entrack" label="English" kind="captions" srclang="en" src="subtitles/vtt/sintel-en.vtt" default>
-				<track id="detrack" label="Deutsch" kind="captions" srclang="de" src="subtitles/vtt/sintel-de.vtt">
-				<track id="estrack" label="Espanol" kind="captions" srclang="es" src="subtitles/vtt/sintel-es.vtt">
-				<p class="vjs-no-js">
-					To view this video please enable JavaScript, and consider upgrading to a web browser that
-					<a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
-				</p>
-			</video>
+  <div id="left-container">
+    <div id="video-player">
+      <!-- container div that is sized by script -->
+      <video id="video1" class="video-js vjs-default-skin" controls preload="auto" width="640" height="264" data-setup='{"playbackRates": [0.5, 1, 1.5, 2]}'>
+        <source src="videos/sintel-short.mp4" type="video/mp4">
+        <source src="videos/sintel-short.webm" type="video/webm">
+        <!-- by using "metadata" as the kind, it will suppress the video player's own caption display -->
+        <track id="entrack" label="English" kind="captions" srclang="en" src="subtitles/vtt/sintel-en.vtt" default>
+        <track id="detrack" label="Deutsch" kind="captions" srclang="de" src="subtitles/vtt/sintel-de.vtt">
+        <track id="estrack" label="Espanol" kind="captions" srclang="es" src="subtitles/vtt/sintel-es.vtt">
+        <p class="vjs-no-js">
+          To view this video please enable JavaScript, and consider upgrading to a web browser that
+          <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+        </p>
+      </video>
       <div id="display"></div>
-		  <div id="dictionary"></div>
-		</div>
-	</div>
+      <div id="dictionary"></div>
+    </div>
+  </div>
 
   <div id="right-container">
     <div id="transcript"></div>
   </div>
 
-	<script src="javascripts/subtitles.js"></script>
+  <script src="javascripts/subtitles.js"></script>
   <script src="javascripts/transcripts.js"></script>
-	<script>
+  <script>
     $(function(){
       let $refreshButton = $('#refresh');
       let $results = $('#css_result');
