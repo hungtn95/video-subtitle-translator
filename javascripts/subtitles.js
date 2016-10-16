@@ -4,18 +4,19 @@ $.expr[':'].textEquals = $.expr.createPseudo(function(arg) {
     };
 });
 
-setTimeout(function () {
+function updateCaption(captionLanguage, placeHolder) {
   videojs('video1', {}, function () {
     let tracks = this.textTracks();
     let metadataTrack;
-    let disp = document.getElementById("display");
+    let disp = document.getElementById(placeHolder);
     let dict = document.getElementById("dictionary");
 
     for (let i = 0; i < tracks.length; i++) {
       let track = tracks[i];
 
       // find the metadata track that's labeled ads
-      if (track.kind === 'captions' && track.label === 'English') {
+      if (track.kind === 'captions' && track.label === captionLanguage) {
+        track.mode = 'showing';
         track.mode = 'hidden';
         // store it for usage outside of the loop
         metadataTrack = track;
@@ -68,4 +69,9 @@ setTimeout(function () {
       }
     });
   });
+}
+
+setTimeout(function () {
+  updateCaption('Espanol', 'display1');
+  updateCaption('English', 'display2');
 }, 0); 

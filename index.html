@@ -14,9 +14,6 @@
 
 <body>
   <h1>The translator</h1>
-  
-
-  
   <div id="video-player">
     <div id="left-container">
       <!-- container div that is sized by script -->
@@ -24,7 +21,7 @@
         <source src="videos/sintel-short.mp4" type="video/mp4">
         <source src="videos/sintel-short.webm" type="video/webm">
         <!-- by using "metadata" as the kind, it will suppress the video player's own caption display -->
-        <track id="entrack" label="English" kind="captions" srclang="en" src="subtitles/vtt/sintel-en.vtt" default>
+        <track id="entrack" label="English" kind="captions" srclang="en" src="subtitles/vtt/sintel-en.vtt">
         <track id="detrack" label="Deutsch" kind="captions" srclang="de" src="subtitles/vtt/sintel-de.vtt">
         <track id="estrack" label="Espanol" kind="captions" srclang="es" src="subtitles/vtt/sintel-es.vtt">
         <p class="vjs-no-js">
@@ -32,7 +29,8 @@
           <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
         </p>
       </video>
-      <div id="display"></div>
+      <div id="display1"></div>
+      <div id="display2"></div>
     </div>
     <div id="right-container">
       <div id="transcript"></div>

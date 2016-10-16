@@ -9,7 +9,7 @@
     float:left;
 }
 
-#display {
+#display1, #display2 {
     position: static;
     margin-top: 10px;
     width: 100%;
