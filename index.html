@@ -14,8 +14,11 @@
 
 <body>
   <h1>The translator</h1>
-  <div id="left-container">
-    <div id="video-player">
+  
+
+  
+  <div id="video-player">
+    <div id="left-container">
       <!-- container div that is sized by script -->
       <video id="video1" class="video-js vjs-default-skin" controls preload="auto" width="640" height="264" data-setup='{"playbackRates": [0.5, 1, 1.5, 2]}'>
         <source src="videos/sintel-short.mp4" type="video/mp4">
@@ -30,13 +33,12 @@
         </p>
       </video>
       <div id="display"></div>
-      <div id="dictionary"></div>
+    </div>
+    <div id="right-container">
+      <div id="transcript"></div>
     </div>
   </div>
-
-  <div id="right-container">
-    <div id="transcript"></div>
-  </div>
+  <div id="dictionary"></div>
 
   <script src="javascripts/subtitles.js"></script>
   <script src="javascripts/transcripts.js"></script>

@@ -1,3 +1,9 @@
+$.expr[':'].textEquals = $.expr.createPseudo(function(arg) {
+    return function( elem ) {
+        return $(elem).text().toLowerCase().match(`^${arg.toLowerCase()}$`);
+    };
+});
+
 setTimeout(function () {
   videojs('video1', {}, function () {
     let tracks = this.textTracks();
@@ -21,9 +27,12 @@ setTimeout(function () {
       let myCues = myTrack.activeCues;      // activeCues is an array of current cues.                                                    
       if (myCues.length > 0) {
         disp.innerText = myCues[0].text;
-        disp.innerHTML = disp.innerHTML.replace(/\b(\w+?)\b(?![^<]*>)/g, '<span class="clickable">$1</span>');
-        $('.clickable').click(function (e) {
-          let word = e.target.innerText.toLowerCase()
+        disp.innerHTML = disp.innerHTML.replace(/\b(\w+?)\b(?![^<]*>)/g, '<span class="word">$1</span>');
+        $('.word').click(function (e) {
+          $('.word.active').removeClass('active');
+          let word = e.target.innerText.toLowerCase();
+          $(`.word:textEquals(${word})`).addClass('active');
+          
           $.ajax({
             //The URL to process the request
             url: 'https://glosbe.com/gapi/translate?',
